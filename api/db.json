@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "name": "Product 1",
+      "price": 8000,
+      "id": 1,
+      "year": 2017
+    },
+    {
+      "name": "Product 2",
+      "price": 1000,
+      "id": 2,
+      "year": 2019
+    },
+    {
+      "name": "Product 3",
+      "price": 1200,
+      "id": 3,
+      "year": 2005
+    },
+    {
+      "name": "Product 4",
+      "price": 1570,
+      "id": 4,
+      "year": 2012
+    },
+    {
+      "name": "Product 5",
+      "price": 1300,
+      "id": 5,
+      "year": 2023
+    },
+    {
+      "name": "Product 6",
+      "price": 1450,
+      "id": 6,
+      "year": 2021
+    },
+    {
+      "name": "Product 7",
+      "price": 1250,
+      "id": 7,
+      "year": 2000
+    },
+    {
+      "name": "Product 8",
+      "price": 1400,
+      "id": 8,
+      "year": 2019
+    },
+    {
+      "name": "Product 9",
+      "price": 1800,
+      "id": 9,
+      "year": 2023
+    },
+    {
+      "name": "Product 10",
+      "price": 1900,
+      "id": 10,
+      "year": 2007
+    },
+    {
+      "name": "Product 11",
+      "price": 1650,
+      "id": 11,
+      "year": 2010
+    }
+  ]
+}
