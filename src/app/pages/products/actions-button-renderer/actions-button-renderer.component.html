@@ -1,0 +1,6 @@
+<div class="d-flex justify-content-around mt-1">
+    <button class="btn btn-danger" (click)="onDelete()">Remove</button>
+    <button class="btn btn-warning" (click)="openProductModal()">Update</button>
+</div>
+
+<app-product-modal #editProductModalComponent (onEditProduct)="updateProduct($event)" [isEditMode]="true"></app-product-modal>
