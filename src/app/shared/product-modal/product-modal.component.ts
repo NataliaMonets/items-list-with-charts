@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Product } from '../interfaces/product.interface';
+import { Product } from '../interfaces/data.interface';
 
 @Component({
     selector: 'app-product-modal',
@@ -9,6 +9,9 @@ import { Product } from '../interfaces/product.interface';
     styleUrls: ['./product-modal.component.scss']
 })
 export class ProductModalComponent implements OnInit {
+    
+    private readonly formBuilder: FormBuilder = inject(FormBuilder);
+    private readonly modalService: BsModalService = inject(BsModalService);
 
     @Input() isEditMode: boolean = false;
     public modalRef: BsModalRef;
@@ -25,10 +28,7 @@ export class ProductModalComponent implements OnInit {
         return this.form.controls;
     }
 
-    constructor(
-        private modalService: BsModalService,
-        private formBuilder: FormBuilder
-    ) {
+    constructor() {
         const currentYear = new Date().getFullYear();
         this.maxYear = new Date(currentYear, 11, 31);
     }

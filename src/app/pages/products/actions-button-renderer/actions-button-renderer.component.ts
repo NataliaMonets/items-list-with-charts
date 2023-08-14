@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import * as ProductActions from '../../../state/product/product.actions';
 import { ProductModalComponent } from 'src/app/shared/product-modal/product-modal.component';
-import { Product } from 'src/app/shared/interfaces/product.interface';
+import { Product } from 'src/app/shared/interfaces/data.interface';
 
 @Component({
   selector: 'app-actions-button-renderer',

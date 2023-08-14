@@ -18,13 +18,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import 'ag-grid-enterprise';
+import { ContactComponent } from './pages/contact/contact.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { AlertsComponent } from './shared/alerts/alerts.component';
+import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         ProductsComponent,
         ActionsButtonRendererComponent,
-        ProductModalComponent
+        ProductModalComponent,
+        ContactComponent,
+        HeaderComponent,
+        AlertsComponent,
+        LoadingScreenComponent
     ],
     imports: [
         CommonModule,

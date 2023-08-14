@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Product } from 'src/app/shared/interfaces/product.interface';
+import { Product } from 'src/app/shared/interfaces/data.interface';
 import { selectError, selectLoaded, selectLoading, selectProducts } from 'src/app/state/product/product.selectors';
 import * as ProductActions from '../../state/product/product.actions';
 import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
@@ -22,7 +22,7 @@ export class ProductsComponent implements OnInit {
     public error$: Observable<any> = this.store.select(selectError);
 
     public columnDefs: ColDef[] = [
-        { headerName: 'Id', field: 'id', rowDrag: true },
+        { headerName: 'Id', field: 'id' },
         { headerName: 'Name', field: 'name' },
         { headerName: 'Price', field: 'price' },
         { headerName: 'Year', field: 'year' },
