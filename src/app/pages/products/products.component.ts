@@ -1,32 +1,34 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/shared/interfaces/data.interface';
 import { selectError, selectLoaded, selectLoading, selectProducts } from 'src/app/state/product/product.selectors';
 import * as ProductActions from '../../state/product/product.actions';
-import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
+import { CellClickedEvent, ColDef, GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ActionsButtonRendererComponent } from './actions-button-renderer/actions-button-renderer.component';
 import { ProductModalComponent } from 'src/app/shared/product-modal/product-modal.component';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
-
+export class ProductsComponent implements OnInit, OnDestroy {
+    private readonly translate: TranslateService = inject(TranslateService);
     public products$: Observable<Product[]> = this.store.select(selectProducts);
     public loading$: Observable<boolean> = this.store.select(selectLoading);
     public loaded$: Observable<boolean> = this.store.select(selectLoaded);
     public error$: Observable<any> = this.store.select(selectError);
+    private destroy = new Subject<void>();
 
     public columnDefs: ColDef[] = [
         { headerName: 'Id', field: 'id' },
-        { headerName: 'Name', field: 'name' },
-        { headerName: 'Price', field: 'price' },
-        { headerName: 'Year', field: 'year' },
-        { headerName: 'Actions', filter: false, sortable: false, cellRenderer: ActionsButtonRendererComponent }
+        { headerName: 'formFieldName', field: 'name', headerValueGetter: this.localizeHeader.bind(this) },
+        { headerName: 'columnPrice', field: 'price', headerValueGetter: this.localizeHeader.bind(this) },
+        { headerName: 'columnYear', field: 'year', headerValueGetter: this.localizeHeader.bind(this) },
+        { headerName: 'columnAction', field: 'action', filter: false, sortable: false, headerValueGetter: this.localizeHeader.bind(this), cellRenderer: ActionsButtonRendererComponent }
     ];
 
     public defaultColDef: ColDef = {
@@ -41,6 +43,13 @@ export class ProductsComponent implements OnInit {
 
     ngOnInit(): void {
         this.store.dispatch(ProductActions.loadProducts());
+        this.translate.onLangChange.pipe(takeUntil(this.destroy)).subscribe(() => this.agGrid.api.refreshHeader());
+        this.translate.onDefaultLangChange.pipe(takeUntil(this.destroy)).subscribe(() => this.agGrid.api.refreshHeader());
+    }
+
+    ngOnDestroy(): void {
+        this.destroy.next();
+        this.destroy.complete();
     }
 
     public addProduct(productData) {
@@ -73,6 +82,11 @@ export class ProductsComponent implements OnInit {
 
     public openProductModal(): void {
         this.addProductModalComponent.openModal();
+    }
+
+    private localizeHeader(parameters: ICellRendererParams): string {
+        let headerIdentifier = parameters.colDef.headerName;
+        return this.translate.instant(headerIdentifier);
     }
 
 }

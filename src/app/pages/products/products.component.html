@@ -23,8 +23,8 @@
             {{ error.message }}
         </div>
         <div class="col-12 p-0 mt-3 d-flex justify-content-between">
-            <button class="btn btn-primary" (click)="openProductModal()">Add product</button>
-            <button class="btn btn-secondary" (click)="clearSelection()">Clear Selection</button>
+            <button class="btn btn-primary" (click)="openProductModal()">{{ 'modalAddTitle' | translate }}</button>
+            <button class="btn btn-secondary" (click)="clearSelection()">{{ 'buttonClearSelection' | translate }}</button>
         </div>
     </div>
 </div>

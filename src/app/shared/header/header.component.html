@@ -8,11 +8,19 @@
                 <p class="navbar-brand m-0">Items list</p>
             </div>
             <ul class="nav nav-underline">
-                <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/products']">Products</a>
+                <li class="dropdown mt-2">
+                    <a class="dropdown-toggle pb-3" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">{{ 'headerLanguage' | translate }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let item of languages" class="dropdown-item" [ngClass]="{'activeLang': item.key === selectedLanguage}" (click)="onLanguageChange(item.key)">{{ item.title | translate }}</li>
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/contact']">Contact us</a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/products']">{{ 'headerProducts' | translate }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/contact']">{{ 'headerContactUs' | translate }}</a>
                 </li>
             </ul>
         </div>

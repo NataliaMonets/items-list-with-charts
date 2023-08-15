@@ -1,35 +1,35 @@
 <ng-template #template>
     <div class="modal-header">
-        <h4 class="modal-title pull-left">{{ isEditMode ? 'Edit product' : 'Add product' }}</h4>
+        <h4 class="modal-title pull-left">{{ (isEditMode ? 'modalEdidTitle' : 'modalAddTitle') | translate }}</h4>
         <button type="button" class="btn-close pull-right" aria-label="Close" (click)="hideModal()"></button>
     </div>
     <div class="modal-body">
         <div class="mb-3">
             <form [formGroup]="form">
                 <div class="mb-3">
-                    <label for="productName" class="form-label">Product name</label>
+                    <label for="productName" class="form-label">{{ 'modalFieldProductName' | translate }}</label>
                     <input class="form-control" type="text" formControlName="name" id="productName">
                     <div *ngIf="f['name'].errors && submitted" class="invalid-feedback">
                         <div *ngFor="let error of f['name'].errors | keyvalue">
-                            {{ getErrorMessage(error.key, error) }}
+                            {{ getErrorMessage(error.key, error) | translate }}
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="productPrice" class="form-label">Product price</label>
+                    <label for="productPrice" class="form-label">{{ 'modalFieldProductPrice' | translate }}</label>
                     <input class="form-control" type="number" formControlName="price" id="productPrice">
                     <div *ngIf="f['price'].errors && submitted" class="invalid-feedback">
                         <div *ngFor="let error of f['price'].errors | keyvalue">
-                            {{ getErrorMessage(error.key, error) }}
+                            {{ getErrorMessage(error.key, error) | translate }}
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="productYear" class="form-label">Year of creation</label>
+                    <label for="productYear" class="form-label">{{ 'modalFieldProductYear' | translate }}</label>
                     <input class="form-control" type="number" formControlName="year" id="productYear" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY', minMode: 'year', maxDate: maxYear }">
                     <div *ngIf="f['year'].errors && submitted" class="invalid-feedback">
                         <div *ngFor="let error of f['year'].errors | keyvalue">
-                            {{ getErrorMessage(error.key, error) }}
+                            {{ getErrorMessage(error.key, error) | translate }}
                         </div>
                     </div>
                 </div>
@@ -37,6 +37,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="isEditMode ? editProduct() : addProduct()" [disabled]="!(form.valid && form.dirty)">{{ isEditMode ? 'Edit' : 'Add' }}</button>
+        <button type="button" class="btn btn-success" (click)="isEditMode ? editProduct() : addProduct()" [disabled]="isEditMode && !form.dirty">{{ (isEditMode ? 'modalbuttonEdit' : 'modalbuttonAdd') | translate }}</button>
     </div>
 </ng-template>

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild,
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Product } from '../interfaces/data.interface';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-product-modal',
@@ -9,7 +10,7 @@ import { Product } from '../interfaces/data.interface';
     styleUrls: ['./product-modal.component.scss']
 })
 export class ProductModalComponent implements OnInit {
-    
+    private readonly translate: TranslateService = inject(TranslateService);
     private readonly formBuilder: FormBuilder = inject(FormBuilder);
     private readonly modalService: BsModalService = inject(BsModalService);
 
@@ -35,7 +36,7 @@ export class ProductModalComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.formBuilder.group({
-            name: this.formBuilder.control(null, { validators: [Validators.required] }),
+            name: this.formBuilder.control(null, { validators: [Validators.required, Validators.minLength(3), Validators.maxLength(100)] }),
             price: this.formBuilder.control(null, { validators: [Validators.required] }),
             year: this.formBuilder.control(null, { validators: [Validators.required] })
         });
@@ -83,13 +84,13 @@ export class ProductModalComponent implements OnInit {
         let message = null;
         switch (key) {
             case 'required':
-                message = '*This field is required';
+                message = 'errorMessageRequired';
                 break;
             case 'maxlength':
-                message = `*Please enter maximum ${error.value.requiredLength} characters`;
+                message = this.translate.instant('errorMessageMaxLength', {requiredLength: error.value.requiredLength});
                 break;
             case 'minlength':
-                message = `*Please enter minimum ${error.value.requiredLength} characters`;
+                message = this.translate.instant('errorMessageMinLength', {requiredLength: error.value.requiredLength});
                 break;
         }
         return message;

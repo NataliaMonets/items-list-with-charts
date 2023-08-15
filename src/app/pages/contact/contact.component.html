@@ -2,43 +2,43 @@
 <app-loading-screen *ngIf="loading"></app-loading-screen>
 <div class="container pt-5">
     <div class="row">
-        <h1 class="text-center mb-3">Contact us</h1>
+        <h1 class="text-center mb-3">{{ 'headerContactUs' | translate }}</h1>
         <form [formGroup]="form" class="col-lg-6 col-md-10 m-auto" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-                <label for="customerName" class="form-label">Name</label>
+                <label for="customerName" class="form-label">{{ 'formFieldName' | translate }}</label>
                 <input class="form-control" type="text" formControlName="customerName" id="customerName">
                 <div *ngIf="f['customerName'].errors && submitted" class="invalid-feedback">
                     <div *ngFor="let error of f['customerName'].errors | keyvalue">
-                        {{ getErrorMessage(error.key) }}
+                        {{ getErrorMessage(error.key) | translate }}
                     </div>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="customerEmail" class="form-label">Email</label>
+                <label for="customerEmail" class="form-label">{{ 'formFieldEmail' | translate }}</label>
                 <input class="form-control" type="email" formControlName="email" id="customerEmail">
                 <div *ngIf="f['email'].errors && submitted" class="invalid-feedback">
                     <div *ngFor="let error of f['email'].errors | keyvalue">
-                        {{ getErrorMessage(error.key) }}
+                        {{ getErrorMessage(error.key) | translate }}
                     </div>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="dateOnConsultation" class="form-label">Date of consultation</label>
+                <label for="dateOnConsultation" class="form-label">{{ 'formFieldDate' | translate }}</label>
                 <input class="form-control" type="text" formControlName="date" id="dateOnConsultation" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', minMode: 'day', minDate: minDate }" onkeydown="return false">
                 <div *ngIf="f['date'].errors && submitted" class="invalid-feedback">
                     <div *ngFor="let error of f['date'].errors | keyvalue">
-                        {{ getErrorMessage(error.key) }}
+                        {{ getErrorMessage(error.key) | translate }}
                     </div>
                 </div>
             </div>
             <div class="mb-3">
                 <div class="form-group">
-                    <label for="additionalInfo">Additional information</label>
+                    <label for="additionalInfo">{{ 'formFieldAdditionalInfo' | translate }}</label>
                     <textarea class="form-control" id="additionalInfo" rows="3"
                         formControlName="additionalInfo"></textarea>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary" type="submit">{{ 'submitButton' | translate }}</button>
         </form>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="d-flex gap-2 mt-1">
-    <button class="btn btn-danger" (click)="onDelete()">Remove</button>
-    <button class="btn btn-warning" (click)="openProductModal()">Update</button>
+    <button class="btn btn-danger" (click)="onDelete()">{{ 'removeButton' | translate }}</button>
+    <button class="btn btn-warning" (click)="openProductModal()">{{ 'updateButton' | translate }}</button>
 </div>
 
 <app-product-modal #editProductModalComponent (onEditProduct)="updateProduct($event)" [isEditMode]="true"></app-product-modal>

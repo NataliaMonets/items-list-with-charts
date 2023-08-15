@@ -52,10 +52,10 @@ export class ContactComponent {
         let message = null;
         switch (key) {
             case 'required':
-                message = '*This field is required.';
+                message = 'errorMessageRequired';
                 break;
             case 'email':
-                message = `*Please enter a valid email.`;
+                message = `errorMessageEmail`;
                 break;
         }
         return message;

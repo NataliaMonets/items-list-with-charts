@@ -1,6 +1,6 @@
 <ng-container *ngIf="alertType()">
     <div class="col-10 m-auto my-3 alert d-flex align-items-center justify-content-between" role="alert" [ngClass]="{'alert-success': alertType() === 'success', 'alert-danger': alertType() === 'failure'}">
-        <p class="mb-0"><strong>{{ alertType() === 'success' ? 'Success' : 'Error' }}!</strong> {{ alertType() === 'success' ? 'The email was sent successfully.' : 'The email was not sent successfully.' }}</p>
+        <p class="mb-0"><strong>{{ (alertType() === 'success' ? 'alertTypeSuccess' : 'alertTypeFailure') | translate }}!</strong> {{ (alertType() === 'success' ? 'alertTypeSuccessMessage' : 'alertTypeFailureMessage') | translate}}</p>
         <span class="material-symbols-outlined pointer" style="cursor: pointer;" (click)="close()">
             close
         </span>

@@ -1,3 +1,17 @@
 .nav-link {
     color: black;
 }
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown a {
+    color: black;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+.activeLang {
+    background: #f8f9fa;
+}

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { productReducer } from './state/product/product.reducer';
@@ -22,6 +22,12 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { AlertsComponent } from './shared/alerts/alerts.component';
 import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
     declarations: [
@@ -45,7 +51,14 @@ import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.c
         AgGridModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({ products: productReducer }),
-        EffectsModule.forRoot([ProductEffect])
+        EffectsModule.forRoot([ProductEffect]),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [BsModalService, BsDatepickerConfig],
     bootstrap: [AppComponent]
