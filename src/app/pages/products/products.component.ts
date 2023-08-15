@@ -63,13 +63,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     public onGridReady(params: GridReadyEvent) {
         params.api.sizeColumnsToFit();
-        window.addEventListener('resize', function () {
-            setTimeout(function () {
-                params.api.sizeColumnsToFit();
-            });
-        });
-
-        params.api.sizeColumnsToFit();
     }
 
     public onCellClicked(e: CellClickedEvent): void {

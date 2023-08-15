@@ -15,7 +15,8 @@
                     rowSelection="multiple"
                     [enableCharts]="true"
                     [enableRangeSelection]="true"
-                    (gridReady)="onGridReady($event)">
+                    (gridReady)="onGridReady($event)"
+                    [rowBuffer]="8">
                 </ag-grid-angular>
             </div>
         </div>

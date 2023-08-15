@@ -4,3 +4,11 @@ app-root {
     width: 100%;
     box-sizing: border-box;
 }
+
+.ag-body-horizontal-scroll-viewport {
+    overflow-x: auto;
+}
+
+.ag-body-vertical-scroll-viewport {
+    overflow-y: auto;
+}
