@@ -59,8 +59,9 @@ export class ProductModalComponent implements OnInit {
             this.submitted = true;
             return;
         }
-        this.onAddProduct.emit(this.form.getRawValue());
-        this.hideModal();
+        const formattedYear = this.formatDate(this.f['year'].value);
+        // this.onAddProduct.emit({...this.form.getRawValue(), year: formattedYear});
+        // this.hideModal();
     }
 
     public editProduct(): void {
@@ -94,5 +95,12 @@ export class ProductModalComponent implements OnInit {
                 break;
         }
         return message;
+    }
+
+    private formatDate(value): number {
+        if (!value) return null;
+        const parsedDate = new Date(value);
+        const extractedYear = parsedDate.getUTCFullYear();
+        return extractedYear;
     }
 }

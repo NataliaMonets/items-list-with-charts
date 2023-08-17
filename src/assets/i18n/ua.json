@@ -3,6 +3,7 @@
     "headerProducts": "Товари",
     "headerContactUs": "Зв'яжіться з нами",
     "headerChart": "Діаграма",
+    "headerHighcharts": "Highcharts",
     "languageUa": "Українська",
     "languageEn": "Англійська",
     "languageDe": "Німецька",
@@ -32,5 +33,6 @@
     "columnYear": "Рік",
     "columnAction": "Дії",
     "buttonClearRowSelection": "Очистити виділення рядка",
-    "buttonClearRangeSelection": "Очистити виділення комірки"
+    "buttonClearRangeSelection": "Очистити виділення комірки",
+    "itemsPrice": "Ціна товару"
 }

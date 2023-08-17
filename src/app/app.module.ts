@@ -25,6 +25,8 @@ import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.c
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ChartComponent } from './pages/chart/chart.component';
+import { HighchartsComponent } from './pages/highcharts/highcharts.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -40,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         HeaderComponent,
         AlertsComponent,
         LoadingScreenComponent,
-        ChartComponent
+        ChartComponent,
+        HighchartsComponent
     ],
     imports: [
         CommonModule,
@@ -60,7 +63,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        HighchartsChartModule
     ],
     providers: [BsModalService, BsDatepickerConfig],
     bootstrap: [AppComponent]

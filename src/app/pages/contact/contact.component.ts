@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactUsService } from 'src/app/shared/_services/contact-us.service';
@@ -29,7 +30,9 @@ export class ContactComponent {
             return;
         }
         this.loading = true;
-        const result = await this.contactUsService.sendEmail(this.form.value);
+        const date = new Date(this.f['date'].value);
+        const formattedDate = formatDate(date, 'dd/MM/yyyy', 'en-US');
+        const result = await this.contactUsService.sendEmail({...this.form.value, date: formattedDate});
         this.loading = false;
         if (result.status === 200) {
             this.contactUsService.sendEmailStatus.set('success');
@@ -37,6 +40,10 @@ export class ContactComponent {
         } else {
             this.contactUsService.sendEmailStatus.set('failure');
         }
+
+        setTimeout(() => {
+            this.contactUsService.sendEmailStatus.set(null);
+        }, 3000);
     }
 
     private getContactUsForm(): FormGroup {

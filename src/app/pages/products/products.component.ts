@@ -1,27 +1,29 @@
-import { Component, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/shared/interfaces/data.interface';
 import { selectError, selectLoaded, selectLoading, selectProducts } from 'src/app/state/product/product.selectors';
 import * as ProductActions from '../../state/product/product.actions';
-import { CellClickedEvent, ColDef, GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
+import { CellClickedEvent, ColDef, ICellRendererParams } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ActionsButtonRendererComponent } from './actions-button-renderer/actions-button-renderer.component';
 import { ProductModalComponent } from 'src/app/shared/product-modal/product-modal.component';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-products',
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit {
+    private store: Store = inject(Store);
     private readonly translate: TranslateService = inject(TranslateService);
+    private destroyRef: DestroyRef = inject(DestroyRef);
     public products$: Observable<Product[]> = this.store.select(selectProducts);
     public loading$: Observable<boolean> = this.store.select(selectLoading);
     public loaded$: Observable<boolean> = this.store.select(selectLoaded);
     public error$: Observable<any> = this.store.select(selectError);
-    private destroy = new Subject<void>();
 
     public columnDefs: ColDef[] = [
         { headerName: 'Id', field: 'id' },
@@ -39,17 +41,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
     @ViewChild(AgGridAngular) agGrid: AgGridAngular;
     @ViewChild('addProductModalComponent') addProductModalComponent: ProductModalComponent;
 
-    constructor(private store: Store) { }
-
     ngOnInit(): void {
         this.store.dispatch(ProductActions.loadProducts());
-        this.translate.onLangChange.pipe(takeUntil(this.destroy)).subscribe(() => this.agGrid.api.refreshHeader());
-        this.translate.onDefaultLangChange.pipe(takeUntil(this.destroy)).subscribe(() => this.agGrid.api.refreshHeader());
-    }
-
-    ngOnDestroy(): void {
-        this.destroy.next();
-        this.destroy.complete();
+        this.translate.onLangChange.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.agGrid.api.refreshHeader());
+        this.translate.onDefaultLangChange.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.agGrid.api.refreshHeader());
     }
 
     public addProduct(productData) {

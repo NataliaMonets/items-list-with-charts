@@ -26,7 +26,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="productYear" class="form-label">{{ 'modalFieldProductYear' | translate }}</label>
-                    <input class="form-control" type="number" formControlName="year" id="productYear" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY', minMode: 'year', maxDate: maxYear }">
+                    <input class="form-control" type="number" formControlName="year" id="productYear" bsDatepicker [bsConfig]="{ dateInputFormat: 'YYYY', minMode: 'year', maxDate: maxYear }" format="YYYY" onkeydown="return false">
                     <div *ngIf="f['year'].errors && submitted" class="invalid-feedback">
                         <div *ngFor="let error of f['year'].errors | keyvalue">
                             {{ getErrorMessage(error.key, error) | translate }}

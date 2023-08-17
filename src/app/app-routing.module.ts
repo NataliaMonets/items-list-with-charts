@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './pages/products/products.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ChartComponent } from './pages/chart/chart.component';
+import { HighchartsComponent } from './pages/highcharts/highcharts.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
         path: 'chart',
         component: ChartComponent
+    },
+    {
+        path: 'highcharts',
+        component: HighchartsComponent
     }
 ];
 

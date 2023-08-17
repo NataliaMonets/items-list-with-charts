@@ -19,6 +19,7 @@ export class ChartComponent implements OnInit {
     public productsData: Product[] = [];
     private lineChart: any;
     private barChart: any;
+    private pieChart: any;
     private chartsData;
 
     ngOnInit(): void {
@@ -67,11 +68,17 @@ export class ChartComponent implements OnInit {
             ...this.chartsData
         });
 
+        this.pieChart = new Chart("pieChart", {
+            type: 'pie',
+            ...this.chartsData
+        });
+
         this.translate.onLangChange.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(changes => {
             this.chartsData.data.datasets[0].label = changes.translations['columnPrice'];
             this.chartsData.data.datasets[1].label = changes.translations['modalFieldProductYear'];
             this.barChart.update();
-            this.lineChart.update()
+            this.lineChart.update();
+            this.pieChart.update();
         });
     }
 }

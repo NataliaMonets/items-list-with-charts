@@ -1,0 +1,22 @@
+<div class="col-10 m-auto pt-5" *ngIf="productsData">
+    <highcharts-chart
+        class="mb-5"
+        [Highcharts]="Highcharts"
+        [options]="chartOptions"
+        style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+
+    <highcharts-chart
+        class="mb-5"
+        [Highcharts]="Highcharts"
+        [options]="barChartOptions"
+        style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+
+    <highcharts-chart
+        class="mb-5"
+        [Highcharts]="Highcharts"
+        [options]="pieChartOptions"
+        style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+</div>
