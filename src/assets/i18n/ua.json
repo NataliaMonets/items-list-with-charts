@@ -2,6 +2,7 @@
     "headerLanguage": "Мова",
     "headerProducts": "Товари",
     "headerContactUs": "Зв'яжіться з нами",
+    "headerChart": "Діаграма",
     "languageUa": "Українська",
     "languageEn": "Англійська",
     "languageDe": "Німецька",
@@ -30,5 +31,6 @@
     "columnPrice": "Ціна",
     "columnYear": "Рік",
     "columnAction": "Дії",
-    "buttonClearSelection": "Очистити виділення"
+    "buttonClearRowSelection": "Очистити виділення рядка",
+    "buttonClearRangeSelection": "Очистити виділення комірки"
 }

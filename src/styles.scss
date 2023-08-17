@@ -12,3 +12,12 @@ app-root {
 .ag-body-vertical-scroll-viewport {
     overflow-y: auto;
 }
+
+.ag-center-cols-container {
+    width: 100% !important;
+}
+
+.ag-cell {
+    width: fit-content !important;
+    min-width: 200px !important;
+}

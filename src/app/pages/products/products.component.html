@@ -1,5 +1,5 @@
 <div class="container" *ngIf="products$ | async as products">
-    <div class="col-12 mt-5">
+    <div class="col-lg-10 col-12 col-md-12 mt-5 m-auto">
         <div style="display: flex; flex-direction: row; width: 100%;">
             <div style=" overflow: hidden; flex-grow: 1">
                 <ag-grid-angular 
@@ -15,7 +15,6 @@
                     rowSelection="multiple"
                     [enableCharts]="true"
                     [enableRangeSelection]="true"
-                    (gridReady)="onGridReady($event)"
                     [rowBuffer]="8">
                 </ag-grid-angular>
             </div>
@@ -24,8 +23,11 @@
             {{ error.message }}
         </div>
         <div class="col-12 p-0 mt-3 d-flex justify-content-between">
-            <button class="btn btn-primary" (click)="openProductModal()">{{ 'modalAddTitle' | translate }}</button>
-            <button class="btn btn-secondary" (click)="clearSelection()">{{ 'buttonClearSelection' | translate }}</button>
+            <button class="btn btn-primary h-50" (click)="openProductModal()">{{ 'modalAddTitle' | translate }}</button>
+            <div class="d-flex flex-column gap-3">
+                <button class="btn btn-secondary" (click)="clearSelection()">{{ 'buttonClearRowSelection' | translate }}</button>
+                <button class="btn btn-secondary" (click)="clearRangeSelection()">{{ 'buttonClearRangeSelection' | translate }}</button>
+            </div>
         </div>
     </div>
 </div>

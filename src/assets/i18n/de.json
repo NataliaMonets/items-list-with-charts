@@ -2,6 +2,7 @@
     "headerLanguage": "Sprache",
     "headerProducts": "Produkte",
     "headerContactUs": "Kontaktiere uns",
+    "headerChart": "Diagramm",
     "languageUa": "Ukrainisch",
     "languageEn": "Englisch",
     "languageDe": "Deutsch",
@@ -30,5 +31,6 @@
     "columnPrice": "Preis",
     "columnYear": "Jahr",
     "columnAction": "Aktion",
-    "buttonClearSelection": "Auswahl löschen"
+    "buttonClearRowSelection": "Zeilenauswahl löschen",
+    "buttonClearRangeSelection": "Zellenauswahl löschen"
 }

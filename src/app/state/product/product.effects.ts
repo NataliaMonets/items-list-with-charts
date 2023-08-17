@@ -9,7 +9,7 @@ export class ProductEffect {
 
     constructor(private actions$: Actions, private productService: ProductsService) { }
 
-    loadUsers$ = createEffect(() => {
+    loadProduct$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(ProductActions.loadProducts),
             switchMap(() =>
@@ -21,7 +21,7 @@ export class ProductEffect {
         );
     });
 
-    addUser$ = createEffect(() => {
+    addProduct$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(ProductActions.addProduct),
             switchMap(data =>
@@ -33,7 +33,7 @@ export class ProductEffect {
         );
     });
 
-    removeUser$ = createEffect(() => {
+    removeProduct$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(ProductActions.removeProduct),
             switchMap(data =>
@@ -45,7 +45,7 @@ export class ProductEffect {
         );
     });
 
-    updateUser$ = createEffect(() => {
+    updateProduct$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(ProductActions.updateProduct),
             switchMap(data =>

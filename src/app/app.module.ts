@@ -24,6 +24,7 @@ import { AlertsComponent } from './shared/alerts/alerts.component';
 import { LoadingScreenComponent } from './shared/loading-screen/loading-screen.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ChartComponent } from './pages/chart/chart.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ContactComponent,
         HeaderComponent,
         AlertsComponent,
-        LoadingScreenComponent
+        LoadingScreenComponent,
+        ChartComponent
     ],
     imports: [
         CommonModule,

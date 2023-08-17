@@ -13,11 +13,14 @@ export class HeaderComponent {
     public selectedLanguage: string = 'en';
 
     constructor() {
-        this.translate.setDefaultLang('en');
-        this.translate.use('en');
+        const currentLanguage = JSON.parse(localStorage.getItem('language')) ? JSON.parse(localStorage.getItem('language')) : 'en';
+        this.translate.setDefaultLang(currentLanguage);
+        this.translate.use(currentLanguage);
+        this.selectedLanguage = currentLanguage;
     }
     onLanguageChange(lang: string): void {
         this.selectedLanguage = lang;
         this.translate.use(lang);
+        localStorage.setItem('language', JSON.stringify(lang));
     }
 }

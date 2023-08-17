@@ -2,6 +2,7 @@
     "headerLanguage": "Language",
     "headerProducts": "Products",
     "headerContactUs": "Contact us",
+    "headerChart": "Chart",
     "languageUa": "Ukrainian",
     "languageEn": "English",
     "languageDe": "German",
@@ -30,5 +31,6 @@
     "columnPrice": "Price",
     "columnYear": "Year",
     "columnAction": "Action",
-    "buttonClearSelection": "Clear Selection"
+    "buttonClearRowSelection": "Clear row selection",
+    "buttonClearRangeSelection": "Clear cell selection"
 }

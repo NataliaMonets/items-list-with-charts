@@ -61,10 +61,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.store.dispatch(ProductActions.addProduct({ product }));
     }
 
-    public onGridReady(params: GridReadyEvent) {
-        params.api.sizeColumnsToFit();
-    }
-
     public onCellClicked(e: CellClickedEvent): void {
         console.log('cellClicked', e);
     }
@@ -75,6 +71,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     public openProductModal(): void {
         this.addProductModalComponent.openModal();
+    }
+
+    public clearRangeSelection(): void {
+        this.agGrid.api.clearRangeSelection();
     }
 
     private localizeHeader(parameters: ICellRendererParams): string {
