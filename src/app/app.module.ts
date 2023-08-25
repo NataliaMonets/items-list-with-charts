@@ -38,13 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     imports: [
         CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        BsDatepickerModule.forRoot(),
-        AgGridModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({ products: productReducer }),
         EffectsModule.forRoot([ProductEffect]),
@@ -55,16 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        HighchartsChartModule,
-        ProductModalComponent,
-        AlertsComponent,
-        HeaderComponent,
-        ActionsButtonRendererComponent,
-        LoadingScreenComponent,
-        ChartComponent,
-        ContactComponent,
-        HighchartsComponent,
-        ProductsComponent
+        HeaderComponent
     ],
     providers: [BsModalService, BsDatepickerConfig],
     bootstrap: [AppComponent]
