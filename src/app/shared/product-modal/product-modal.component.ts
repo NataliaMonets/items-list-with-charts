@@ -78,7 +78,8 @@ export class ProductModalComponent implements OnInit {
             this.submitted = true;
             return;
         }
-        this.onEditProduct.emit({ ...this.form.getRawValue(), id: this.productData.id });
+        const formattedYear = this.formatDate(this.f['year'].value);
+        this.onEditProduct.emit({ ...this.form.getRawValue(), id: this.productData.id, year: formattedYear });
         this.hideModal();
     }
 
