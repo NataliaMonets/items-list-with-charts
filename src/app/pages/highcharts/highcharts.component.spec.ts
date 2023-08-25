@@ -8,7 +8,7 @@ describe('HighchartsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HighchartsComponent]
+        imports: [HighchartsComponent]
     });
     fixture = TestBed.createComponent(HighchartsComponent);
     component = fixture.componentInstance;

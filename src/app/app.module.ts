@@ -34,16 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
     declarations: [
-        AppComponent,
-        ProductsComponent,
-        ActionsButtonRendererComponent,
-        ProductModalComponent,
-        ContactComponent,
-        HeaderComponent,
-        AlertsComponent,
-        LoadingScreenComponent,
-        ChartComponent,
-        HighchartsComponent
+        AppComponent
     ],
     imports: [
         CommonModule,
@@ -64,7 +55,16 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        HighchartsChartModule
+        HighchartsChartModule,
+        ProductModalComponent,
+        AlertsComponent,
+        HeaderComponent,
+        ActionsButtonRendererComponent,
+        LoadingScreenComponent,
+        ChartComponent,
+        ContactComponent,
+        HighchartsComponent,
+        ProductsComponent
     ],
     providers: [BsModalService, BsDatepickerConfig],
     bootstrap: [AppComponent]

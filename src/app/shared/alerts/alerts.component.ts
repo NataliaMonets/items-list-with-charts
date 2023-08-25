@@ -1,10 +1,17 @@
 import { Component, OnInit, Signal, computed, inject } from '@angular/core';
 import { ContactUsService } from '../_services/contact-us.service';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-alerts',
-  templateUrl: './alerts.component.html',
-  styleUrls: ['./alerts.component.scss']
+    standalone: true,
+    selector: 'app-alerts',
+    templateUrl: './alerts.component.html',
+    styleUrls: ['./alerts.component.scss'],
+    imports: [
+        CommonModule,
+        TranslateModule,
+    ]
 })
 export class AlertsComponent implements OnInit {
     private readonly contactUsService: ContactUsService = inject(ContactUsService);

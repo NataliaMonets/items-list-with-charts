@@ -1,14 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateService } from '@ngx-translate/core';
 import * as Highcharts from 'highcharts';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { ProductsService } from 'src/app/_services/products.service';
 import { Product } from 'src/app/shared/interfaces/data.interface';
 
 @Component({
+    standalone: true,
     selector: 'app-highcharts',
     templateUrl: './highcharts.component.html',
-    styleUrls: ['./highcharts.component.scss']
+    styleUrls: ['./highcharts.component.scss'],
+    imports: [
+        CommonModule,
+        HighchartsChartModule,
+    ]
 })
 export class HighchartsComponent implements OnInit {
     private translate: TranslateService = inject(TranslateService);

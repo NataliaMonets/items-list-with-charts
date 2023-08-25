@@ -1,20 +1,28 @@
-import { Component, DestroyRef, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, ViewChild, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Product } from 'src/app/shared/interfaces/data.interface';
 import { selectError, selectLoaded, selectLoading, selectProducts } from 'src/app/state/product/product.selectors';
 import * as ProductActions from '../../state/product/product.actions';
 import { CellClickedEvent, ColDef, ICellRendererParams } from 'ag-grid-community';
-import { AgGridAngular } from 'ag-grid-angular';
+import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 import { ActionsButtonRendererComponent } from './actions-button-renderer/actions-button-renderer.component';
 import { ProductModalComponent } from 'src/app/shared/product-modal/product-modal.component';
 import { Observable } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CommonModule } from '@angular/common';
 
 @Component({
+    standalone: true,
     selector: 'app-products',
     templateUrl: './products.component.html',
-    styleUrls: ['./products.component.scss']
+    styleUrls: ['./products.component.scss'],
+    imports: [
+        CommonModule,
+        ProductModalComponent,
+        TranslateModule,
+        AgGridModule
+    ]
 })
 export class ProductsComponent implements OnInit {
     private store: Store = inject(Store);

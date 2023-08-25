@@ -5,9 +5,9 @@ import { Product } from 'src/app/shared/interfaces/data.interface';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductsService } from 'src/app/_services/products.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
+    standalone: true,
     selector: 'app-chart',
     templateUrl: './chart.component.html',
     styleUrls: ['./chart.component.scss']

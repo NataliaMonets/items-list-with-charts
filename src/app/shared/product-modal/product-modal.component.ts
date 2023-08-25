@@ -1,13 +1,22 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Product } from '../interfaces/data.interface';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
+    standalone: true,
     selector: 'app-product-modal',
     templateUrl: './product-modal.component.html',
-    styleUrls: ['./product-modal.component.scss']
+    styleUrls: ['./product-modal.component.scss'],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        BsDatepickerModule
+    ]
 })
 export class ProductModalComponent implements OnInit {
     private readonly translate: TranslateService = inject(TranslateService);
@@ -60,8 +69,8 @@ export class ProductModalComponent implements OnInit {
             return;
         }
         const formattedYear = this.formatDate(this.f['year'].value);
-        // this.onAddProduct.emit({...this.form.getRawValue(), year: formattedYear});
-        // this.hideModal();
+        this.onAddProduct.emit({...this.form.getRawValue(), year: formattedYear});
+        this.hideModal();
     }
 
     public editProduct(): void {

@@ -13,19 +13,19 @@ const routes: Routes = [
     },
     {
         path: 'products',
-        component: ProductsComponent
+        loadComponent: () => import('./pages/products/products.component').then(mod => mod.ProductsComponent)
     },
     {
         path: 'contact',
-        component: ContactComponent
+        loadComponent: () => import('./pages/contact/contact.component').then(mod => mod.ContactComponent)
     },
     {
         path: 'chart',
-        component: ChartComponent
+        loadComponent: () => import('./pages/chart/chart.component').then(mod => mod.ChartComponent)
     },
     {
         path: 'highcharts',
-        component: HighchartsComponent
+        loadComponent: () => import('./pages/highcharts/highcharts.component').then(mod => mod.HighchartsComponent)
     }
 ];
 

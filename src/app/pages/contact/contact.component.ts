@@ -1,12 +1,25 @@
-import { formatDate } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ContactUsService } from 'src/app/shared/_services/contact-us.service';
+import { AlertsComponent } from 'src/app/shared/alerts/alerts.component';
+import { LoadingScreenComponent } from 'src/app/shared/loading-screen/loading-screen.component';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+    standalone: true,
+    selector: 'app-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: ['./contact.component.scss'],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        BsDatepickerModule,
+        LoadingScreenComponent,
+        AlertsComponent
+    ]
 })
 export class ContactComponent {
     private readonly contactUsService: ContactUsService = inject(ContactUsService);
@@ -32,7 +45,7 @@ export class ContactComponent {
         this.loading = true;
         const date = new Date(this.f['date'].value);
         const formattedDate = formatDate(date, 'dd/MM/yyyy', 'en-US');
-        const result = await this.contactUsService.sendEmail({...this.form.value, date: formattedDate});
+        const result = await this.contactUsService.sendEmail({ ...this.form.value, date: formattedDate });
         this.loading = false;
         if (result.status === 200) {
             this.contactUsService.sendEmailStatus.set('success');
